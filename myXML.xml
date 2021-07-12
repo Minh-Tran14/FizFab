@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<racine>
+	<event id = "1" ordre = "I1"/>
+	<event id = "2" ordre = "I2"/>
+	<event id = "3" ordre = "CO2"/>
+	<event id = "4" ordre = "O20" var = "A1" label = "frequence cardique"/>
+	<event id = "5" ordre = "O20" var = "A2" label = "vitesse"/>
+	<event id = "6" ordre = "O20" var = "A3" label = "distance parcourue"/>
+</racine>
