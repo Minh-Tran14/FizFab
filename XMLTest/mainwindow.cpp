@@ -30,20 +30,26 @@ MainWindow::MainWindow(QWidget *parent)
 
     ids = 1; // On initialise ids à 1
 
+
+
     QDomElement dom_element = dom.documentElement();
     QDomNode noeud = dom_element.firstChild();
     QDomElement child = noeud.toElement();
-    if(child.attribute("ID").toInt() == ids)
+    QDomElement grandchild = child.firstChild().toElement();
+
+
+    if(child.attribute("ID").toInt() == 1)
     {
         QMessageBox::information(NULL, "étape", child.attribute("ID"));
+        if(grandchild.attribute("id").toInt() == ids)
+        {
+            QMessageBox::information(NULL, "event", grandchild.attribute("id","?") + "<br />ordre donné : " + grandchild.attribute("ordre"));
+            ids++;
+            grandchild.nextSibling();
+        }
+
     }
 
-
-    QDomElement grandchild = child.firstChild().toElement();
-    if(grandchild.attribute("id").toInt() == 2)
-    {
-        QMessageBox::information(NULL, "event", grandchild.attribute("id") + grandchild.attribute("ordre"));
-    }
 
 
 
