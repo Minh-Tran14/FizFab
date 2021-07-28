@@ -28,22 +28,39 @@ MainWindow::MainWindow(QWidget *parent)
         return;
     }
 
-
+    ids = 1; // On initialise ids à 1
 
     QDomElement dom_element = dom.documentElement();
     QDomNode noeud = dom_element.firstChild();
+    QDomElement child = noeud.toElement();
+    if(child.attribute("ID").toInt() == ids)
+    {
+        QMessageBox::information(NULL, "étape", child.attribute("ID"));
+    }
+
+
+    QDomElement grandchild = child.firstChild().toElement();
+    if(grandchild.attribute("id").toInt() == 2)
+    {
+        QMessageBox::information(NULL, "event", grandchild.attribute("id") + grandchild.attribute("ordre"));
+    }
+
+
+
+
 
 //    QListWidget *listeProjects = new QListWidget();
-    ids = 1; // On initialise ids à 1
 
+
+/**
     while(!noeud.isNull())
     {
         QDomElement element = noeud.toElement(); // Transformation du noeud en élément
         if(!dom_element.isNull())
         {
              //QMessageBox::information(this, "Numéro de l'évènement", "Le numéro de l'évènement est " +  element.attribute("id","?"));
-             /*QListWidgetItem *itemProject = new QListWidgetItem(QString(element.text()) + "(" + element.attribute("id","?") + ")"); // On met le texte de l'élément dans l'item de la liste
-             listeProjects->addItem(itemProject); // Et on place l'item dans la liste */
+             QListWidgetItem *itemProject = new QListWidgetItem(QString(element.text()) + "(" + element.attribute("id","?") + ")"); // On met le texte de l'élément dans l'item de la liste
+             listeProjects->addItem(itemProject); // Et on place l'item dans la liste
              if(element.attribute("id").toInt() == ids)
                  QMessageBox::information(NULL, "évènement", "EVENT n° " + element.attribute("id", "?") + "<br />ordre donné : " + element.attribute("ordre") + "<br />variable : " + element.attribute("var") + "<br />label : " +element.attribute("label"));
              ids++;
@@ -52,8 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     }
 
-
-
+**/
 
 /*    QSpinBox *id_demand = new QSpinBox(this);
         QPushButton *open = new QPushButton("Voir la prochaine news", this);
