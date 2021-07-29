@@ -18,12 +18,15 @@
 
 		<eventC>
 
-			<event id="7" priority="1" ordre="O23" timer="timerA" tik="1" span="1"/>
-			<event id="8" ordre="O22" zone="A1" tab="T1" nbval="10"/>					
-			<event id="9" ordre="O23" timer="timerA" tik="1" span="1"/>
-			<event id="10" ordre="O21" zone="A2" var="VS2"/>
-			<event id="11" ordre="O23" timer="timerA" tik="1" span="1"/>
-			<event id="12" ordre="O22" zone="A3" var="VS5"/>
+			<event id="7" priority="1" ordre="O23" timer="timerA" tik="1" span="1">
+				<event id="8" ordre="O22" zone="A1" tab="T1" nbval="10"/>	
+			</event>
+			<event id="9" ordre="O23" timer="timerA" tik="1" span="1">
+				<event id="10" ordre="O21" zone="A2" var="VS2"/>
+			</event>
+			<event id="11" ordre="O23" timer="timerA" tik="1" span="1">
+				<event id="12" ordre="O22" zone="A3" var="VS5"/>
+			</event>
 		</eventC>
 
 	</etape>
