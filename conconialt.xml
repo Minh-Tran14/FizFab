@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<racine>
+
+	<head id="01" titre="Test de Conconi" description=" test permettant de mesurer le point de Conconi " prerequis="I4" timerI="1" timerA="1000">
+		<title>
+	</head>
+
+	<body>
+
+		<etape id="0">
+
+			<eventD>
+
+				<event id="1" ordre="I1">
+				</event>
+
+				<event id="2" ordre="I2">
+				</event>
+
+				<event id="3" ordre="CO2">
+				</event>
+
+				<event id="4" ordre="O20" zone="A1" label="fréquence cardiaque">
+				</event>
+
+				<eventid id="5" ordre="O20" zone="A2" label="vitesse"> 
+				</event>
+
+				<event id="6" ordre="O20" zone="A3" label="distance parcourue"> 
+				</event>
+
+
+			</eventD>
+
+			<eventC>
+
+				<event id="7" priority="1" ordre="O23" timer="timerA" tik="1" span="1">
+
+					<event id="8" ordre="O22" zone="A1" tab="T1" nbval="10">
+					</event>
+
+				</event>
+
+
+				<event id="9" ordre="O23" timer="timerA" tik="1" span="1">
+
+					<event id="10" ordre="O21" zone="A2" var="VS2">
+					</event>
+
+				</event>
+
+				<event ordre="O23" timer="timerA" tik="1" span="1">
+
+					<event ordre="O22" zone="A3" var="VS5">
+					</event>
+
+				</event>
+
+			</eventC>
+
+		</etape0>
+
+	</body>
+</racine>
