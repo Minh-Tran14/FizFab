@@ -36,7 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
     QDomNode noeud2 = child.firstChild();
     QDomElement grandchild = noeud2.toElement();
     QDomNode noeud3 = grandchild.firstChild();
-
+    QDomElement event = noeud3.toElement();
+    QDomNode noeud4 = event.firstChild();
+    QDomElement event1 = noeud4.toElement();
 
 
 
@@ -51,16 +53,16 @@ MainWindow::MainWindow(QWidget *parent)
             noeud2 = child.firstChild();
             while(!noeud2.isNull()){
                 QDomElement grandchild = noeud2.toElement();
-                ids = 1; // On initialise ids à 1
                 if(grandchild.tagName()== "eventD"){
+                    ids = 1; // On initialise ids à 1
                     QMessageBox::information(NULL, "eventD", grandchild.attribute("ID"));
                     noeud3 = grandchild.firstChild();
                     while(!noeud3.isNull())
                     {
-                        QDomElement event = noeud3.toElement();
+                        event = noeud3.toElement();
                         if(event.attribute("id").toInt() == ids)
                         {
-                            QMessageBox::information(NULL, "event", "EVENT n° " + event.attribute("id","?") + "<br />ordre donné : " + event.attribute("ordre")+ + "<br />zone : " + event.attribute("zone") + "<br />label : " +event.attribute("label") + "<br />tableau : " +event.attribute("tab")+ "<br />variable : " + event.attribute("var"));
+                            QMessageBox::information(NULL, "event", "EVENT n° " + event.attribute("id","?") + "<br />ordre donné : " + event.attribute("ordre")+ "<br />zone : " + event.attribute("zone") + "<br />label : " +event.attribute("label") + "<br />tableau : " +event.attribute("tab")+ "<br />variable : " + event.attribute("var"));
                             ids++;
                             noeud3 = noeud3.nextSibling();
                         }
@@ -69,12 +71,58 @@ MainWindow::MainWindow(QWidget *parent)
                 }
 
                 if(grandchild.tagName()== "eventC"){
+                    ids = 1; // On initialise ids à 1
+                    int s = 0;
                     QMessageBox::information(NULL, "eventC", grandchild.attribute("ID"));
+                    noeud3 = grandchild.firstChild();
+                    while(!noeud3.isNull()){
+                        event = noeud3.toElement();
+                        if(event.attribute("id").toInt() == ids)
+                        {
+                            QMessageBox::information(NULL, "event", "CONDITION n° " + event.attribute("id","?") + "<br />ordre donné : " + event.attribute("ordre"));
+                            noeud4 = event.firstChild();
+                            while(!noeud4.isNull())
+                            {
+                                event1 = noeud4.toElement();
+                                if(event1.attribute("id").toInt() == s)
+                                {
+                                    QMessageBox::information(NULL, "event", "EVENT n° " + event1.attribute("id","?") + "<br />ordre donné : " + event1.attribute("ordre"));
+                                    s++;
+                                    noeud4 = noeud4.nextSibling();
+                                }
+                            }
+                            ids++;
+                            noeud3 = noeud3.nextSibling();
+                        }
+                    }
                     noeud2 = noeud2.nextSibling();
                 }
 
                 if(grandchild.tagName()== "eventI"){
+                    ids = 1; // On initialise ids à 1
+                    int s = 0;
                     QMessageBox::information(NULL, "eventI", grandchild.attribute("ID"));
+                    noeud3 = grandchild.firstChild();
+                    while(!noeud3.isNull()){
+                        event = noeud3.toElement();
+                        if(event.attribute("id").toInt() == ids)
+                        {
+                            QMessageBox::information(NULL, "event", "CONDITION n° " + event.attribute("id","?") + "<br />ordre donné : " + event.attribute("ordre"));
+                            noeud4 = event.firstChild();
+                            while(!noeud4.isNull())
+                            {
+                                event1 = noeud4.toElement();
+                                if(event1.attribute("id").toInt() == s)
+                                {
+                                    QMessageBox::information(NULL, "event", "EVENT n° " + event1.attribute("id","?") + "<br />ordre donné : " + event1.attribute("ordre"));
+                                    s++;
+                                    noeud4 = noeud4.nextSibling();
+                                }
+                            }
+                            ids++;
+                            noeud3 = noeud3.nextSibling();
+                        }
+                    }
                     noeud2 = noeud2.nextSibling();
                 }
             }
