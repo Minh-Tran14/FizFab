@@ -1,34 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <racine>
 
-	<head id="01" titre="Test de Conconi" description=" test permettant de mesurer le point de Conconi " prerequis="I4" timerI="1" timerA="1000">	
-	</head>
+	<head id="01" titre="Test de Conconi" description=" test permettant de mesurer le point de Conconi " prerequis="I4" timerI="1" timerA="1000">
+
 
 	<etape ID = "0">
-
-		<eventD>
-
+		<eventD ID = "eventD">
 			<event id="1" ordre="I1"/>
 			<event id="2" ordre="I2"/>
-			<event id="3" ordre="CO2"/>
-			<event id="4" ordre="O20" zone="A1" label="fréquence cardiaque"/>
-			<event id="5" ordre="O20" zone="A2" label="vitesse"/> 
-			<event id="6" ordre="O20" zone="A3" label="distance parcourue"/>
+			<event id="3" ordre="I4"/>
+			<event id="4" ordre="CO2"/>
+			<event id="5" ordre="O20" zone="A1" label="frequence cardiaque"/>
+			<event id="6" ordre="O20" zone="A2" label="vitesse"/>
+			<event id="7" ordre="O20" zone="A3" label="distance parcourue"/>
+			<event id="8" ordre="O10" tab="T1"/>
+			<event id="9" ordre="O11" var="VP1"/> 
 		</eventD>
 
-		<eventC>
-
-			<event id="7" priority="1" ordre="O23" timer="timerA" tik="1" span="1">
-				<event id="8" ordre="O22" zone="A1" tab="T1" nbval="10"/>	
-			</event>
-			<event id="9" ordre="O23" timer="timerA" tik="1" span="1">
-				<event id="10" ordre="O21" zone="A2" var="VS2"/>
-			</event>
-			<event id="11" ordre="O23" timer="timerA" tik="1" span="1">
-				<event id="12" ordre="O22" zone="A3" var="VS5"/>
+		<eventC ID = "eventC">
+			<event id="1" ordre="E9">
+				<event id="0" ordre="O8" etape="1"/>
 			</event>
 		</eventC>
+		
+		<eventI ID = "eventI">
+			<event id="1" ordre="O23" var="timerA" span="1">
+				<event id="0" ordre="O22" zone="A1" tab="T1" nbval="10"/>
+			</event>
 
+			<event id="2" ordre="O23" var="timerA" span="1">
+				<event id="1" ordre="O21" zone="A2" var="VS2"/>
+			</event>
+
+			<event id="3" ordre="O23" var="timerA" span="1">
+				<event id="2" ordre="O22" zone="A3" var="VS5"/>
+			</event>
+		</eventI>
+		
+	</etape>
+
+	<etape ID = "1">
+		<eventD ID = "eventD">
+			<event id="1" ordre="O1" var1="VE2" var2="VS6" />
+			<event id="2" ordre="O1" var1="VE1" var2="VS7" />
+		</eventD>
+		
+		<eventC ID = "eventC">
+			<event id="1" ordre="E9">
+				<event id="0" ordre="O8" etape="2"/>
+			</event>
+		</eventC>
+	</etape>
+
+	<etape ID = "2">
+		<eventD ID = "eventD">
+			<event id="1" ordre="O24" nom="D1"/>
+		</eventD>
+		
+		<eventC ID = "eventC">
+			<event id="1" ordre="O23" var="D1" span="40">
+				<event id="0" ordre="O17" tab="T1" var="VE4"/>
+			</event>
+
+			<event id="2" ordre="O23" var="D1" span="200">
+				<event id="1" ordre="O1" var1="VE2" var2="VS2 + 0.5"/>
+			</event>
+	
+			<event id="3" ordre="E2" var1="T1 0" var2="(T1 1) + 3">
+				<event id="2" ordre="O14" var="VP1"/>
+			</event>
+
+			<event id="4" ordre="E1" var1="T1 0" var2="(T1 1) + 3">
+				<event id="3" ordre="O18" var="VP1"/>
+			</event>
+
+			<event id="5" ordre="E1" var1="VP5" var2="3">
+				<event id="4" ordre="O19" var="T1 0" emplacement="R1" label="point de conconi"/>
+				<event id="5" ordre="O9"/>
+			</event>
+		</eventC>
 	</etape>
 
 </racine>
