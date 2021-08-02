@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <racine>
 
-	<head id="01" titre="Test de Conconi" description=" test permettant de mesurer le point de Conconi " prerequis="I4" timerI="1" timerA="1000">
+	<head id="01" titre="Test de Conconi" description=" test permettant de mesurer le point de Conconi " prerequis="I4" timerI="1" timerA="1000"/>
 
 
 	<etape ID = "0">
