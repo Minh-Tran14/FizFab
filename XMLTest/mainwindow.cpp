@@ -47,6 +47,12 @@ MainWindow::MainWindow(QWidget *parent)
     while(!noeud.isNull())
     {
         child = noeud.toElement();
+        if(child.attribute("ID").toInt() == 01)
+        {
+            QMessageBox::information(NULL, "Entete", "Titre : " + child.attribute("titre") + "<br />Description : "+ child.attribute("description"));
+            noeud = noeud.nextSibling();
+        }
+
         if(child.attribute("ID").toInt() == i)
         {
             QMessageBox::information(NULL, "étape", child.attribute("ID"));
