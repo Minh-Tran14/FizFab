@@ -32,13 +32,63 @@ MainWindow::MainWindow(QWidget *parent)
 
     QDomElement dom_element = dom.documentElement();
     QDomNode noeud = dom_element.firstChild();
-    QDomElement child = noeud.toElement();
+    QDomElement child = noeud.toElement(); // Transformation du noeud en élément
     QDomNode noeud2 = child.firstChild();
+    QDomElement grandchild = noeud2.toElement();
+    QDomNode noeud3 = grandchild.firstChild();
 
-    ids = 1; // On initialise ids à 1
 
 
-    if(child.attribute("ID").toInt() == 1)
+
+    int i = 0;
+
+    while(!noeud.isNull())
+    {
+        child = noeud.toElement();
+        if(child.attribute("ID").toInt() == i)
+        {
+            QMessageBox::information(NULL, "étape", child.attribute("ID"));
+            noeud2 = child.firstChild();
+            while(!noeud2.isNull()){
+                QDomElement grandchild = noeud2.toElement();
+                ids = 1; // On initialise ids à 1
+                if(grandchild.tagName()== "eventD"){
+                    QMessageBox::information(NULL, "eventD", grandchild.attribute("ID"));
+                    noeud3 = grandchild.firstChild();
+                    while(!noeud3.isNull())
+                    {
+                        QDomElement event = noeud3.toElement();
+                        if(event.attribute("id").toInt() == ids)
+                        {
+                            QMessageBox::information(NULL, "event", "EVENT n° " + event.attribute("id","?") + "<br />ordre donné : " + event.attribute("ordre")+ + "<br />zone : " + event.attribute("zone") + "<br />label : " +event.attribute("label") + "<br />tableau : " +event.attribute("tab")+ "<br />variable : " + event.attribute("var"));
+                            ids++;
+                            noeud3 = noeud3.nextSibling();
+                        }
+                    }
+                    noeud2 = noeud2.nextSibling();
+                }
+
+                if(grandchild.tagName()== "eventC"){
+                    QMessageBox::information(NULL, "eventC", grandchild.attribute("ID"));
+                    noeud2 = noeud2.nextSibling();
+                }
+
+                if(grandchild.tagName()== "eventI"){
+                    QMessageBox::information(NULL, "eventI", grandchild.attribute("ID"));
+                    noeud2 = noeud2.nextSibling();
+                }
+            }
+
+            i++;
+            noeud = noeud.nextSibling();
+
+        }
+    }
+
+
+
+
+/**    if(child.attribute("ID").toInt() == 1)
     {
         QMessageBox::information(NULL, "étape", child.attribute("ID"));
         while(!noeud2.isNull())
@@ -46,14 +96,14 @@ MainWindow::MainWindow(QWidget *parent)
             QDomElement grandchild = noeud2.toElement();
             if(grandchild.attribute("id").toInt() == ids)
             {
-                QMessageBox::information(NULL, "event", "EVENT n° " + grandchild.attribute("id","?") + "<br />ordre donné : " + grandchild.attribute("ordre")+ + "<br />variable : " + grandchild.attribute("var") + "<br />label : " +grandchild.attribute("label"));
+                QMessageBox::information(NULL, "event", "EVENT n° " + grandchild.attribute("id","?") + "<br />ordre donné : " + grandchild.attribute("ordre")+ + "<br />zone : " + grandchild.attribute("zone") + "<br />label : " +grandchild.attribute("label") + "<br />tableau : " +grandchild.attribute("tab")+ "<br />variable : " + grandchild.attribute("var"));
                 ids++;
                 noeud2 = noeud2.nextSibling();
             }
         }
 
     }
-
+**/
 
 
 
@@ -61,25 +111,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 //    QListWidget *listeProjects = new QListWidget();
 
-
-/**
-    while(!noeud.isNull())
-    {
-        QDomElement element = noeud.toElement(); // Transformation du noeud en élément
-        if(!dom_element.isNull())
-        {
-             //QMessageBox::information(this, "Numéro de l'évènement", "Le numéro de l'évènement est " +  element.attribute("id","?"));
-             QListWidgetItem *itemProject = new QListWidgetItem(QString(element.text()) + "(" + element.attribute("id","?") + ")"); // On met le texte de l'élément dans l'item de la liste
-             listeProjects->addItem(itemProject); // Et on place l'item dans la liste
-             if(element.attribute("id").toInt() == ids)
-                 QMessageBox::information(NULL, "évènement", "EVENT n° " + element.attribute("id", "?") + "<br />ordre donné : " + element.attribute("ordre") + "<br />variable : " + element.attribute("var") + "<br />label : " +element.attribute("label"));
-             ids++;
-             noeud = noeud.nextSibling();
-        }
-
-    }
-
-**/
 
 /*    QSpinBox *id_demand = new QSpinBox(this);
         QPushButton *open = new QPushButton("Voir la prochaine news", this);
@@ -106,7 +137,7 @@ void MainWindow::change(int change)
 
 void MainWindow::openDom()
 {
-    QDomDocument dom("mon_xml");
+   /** QDomDocument dom("mon_xml");
      QFile file("xml_doc.xml");
      if (!file.open(QIODevice::ReadOnly))
          return;
@@ -126,7 +157,7 @@ void MainWindow::openDom()
              QMessageBox::information(NULL, "Information", "La nouvelle news est :<br />" + e.attribute("value"));
          n = n.nextSibling();
 
-     }
+     } **/
 }
 
 MainWindow::~MainWindow()
